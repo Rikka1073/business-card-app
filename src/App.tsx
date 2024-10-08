@@ -1,15 +1,8 @@
 import "./App.css";
-
-import { Button, ChakraProvider } from "@chakra-ui/react";
+import Router from "./routes/Router";
 
 function App() {
-  return (
-    <>
-      <ChakraProvider>
-        <Button colorScheme="blue">Button</Button>
-      </ChakraProvider>
-    </>
-  );
+  return <Router />;
 }
 
 export default App;
