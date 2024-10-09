@@ -24,8 +24,13 @@ const Card = () => {
       id:{id}
       {userData.map((user) => {
         return (
-          <div>
+          <div key={user.id}>
             <Text>{user.name}</Text>
+            <Text>{user.description}</Text>
+            <Text>{user.user_id}</Text>
+            <Text>{user.github_id}</Text>
+            <Text>{user.qiita_id}</Text>
+            <Text>{user.x_id}</Text>
           </div>
         );
       })}

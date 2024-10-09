@@ -9,8 +9,8 @@ export const getAllUsers = async () => {
   }
 
   const usersData = data.map((user) => {
-    return new User(user.id, user.name, user.description, user.github_id, user.qiita_id, user.x_id);
+    return new User(user.id, user.name, user.description, user.github_id, user.qiita_id, user.x_id, user.user_id);
   });
 
-  return console.log(usersData);
+  return usersData;
 };
