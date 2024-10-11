@@ -1,13 +1,15 @@
-import { Button, ChakraProvider } from "@chakra-ui/react";
+import { Box, Button, ChakraProvider } from "@chakra-ui/react";
 
 const Home = () => {
   return (
-    <div>
-      Home
-      <ChakraProvider>
-        <Button colorScheme="blue">Button</Button>
-      </ChakraProvider>
-    </div>
+    <>
+      <Box>
+        Home
+        <ChakraProvider>
+          <Button colorScheme="blue">Button</Button>
+        </ChakraProvider>
+      </Box>
+    </>
   );
 };
 
