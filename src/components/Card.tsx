@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getAllUsers } from "../utils/supabaseFunction";
+import { getAllUsersData } from "../utils/supabaseFunction";
 import { User } from "../domain/User";
 
 import { Box, Text } from "@chakra-ui/react";
@@ -12,7 +12,7 @@ const Card = () => {
 
   useEffect(() => {
     const getUserData = async () => {
-      const userDatas = await getAllUsers();
+      const userDatas = await getAllUsersData();
       if (Array.isArray(userDatas)) {
         setuserData(userDatas);
         setLoading(false);
@@ -32,15 +32,15 @@ const Card = () => {
             <Text>Loading...</Text>
           </Box>
         ) : (
-          userData.map((user) => {
+          userData.map((user, index) => {
             return (
-              <div key={user.id}>
+              <div key={index}>
                 <Text>{user.name}</Text>
                 <Text>{user.description}</Text>
-                <Text>{user.user_id}</Text>
                 <Text>{user.github_id}</Text>
                 <Text>{user.qiita_id}</Text>
                 <Text>{user.x_id}</Text>
+                <Text>{user.skills}</Text>
               </div>
             );
           })

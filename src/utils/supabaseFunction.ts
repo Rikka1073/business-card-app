@@ -1,15 +1,31 @@
 import { User } from "../domain/User";
 import { supabase } from "./supabase";
 
-export const getAllUsers = async () => {
-  const { data, error } = await supabase.from("users").select("*");
+export const getAllUsersData = async () => {
+  const { data, error } = await supabase
+    .from("users")
+    .select(
+      `*, user_skill!user_skill_user_id_fkey(skill_id, skills!user_skill_skill_id_fkey(id, name))`
+    );
 
   if (error) {
-    return new Error("Error fetching users");
+    new Error("Error fetching users");
+    console.log("Error fetching data with user_skill:", error);
+    return [];
+  } else {
+    console.log("Fetched data with user_skill:", data);
   }
 
-  const usersData = data.map((user) => {
-    return new User(user.id, user.name, user.description, user.github_id, user.qiita_id, user.x_id, user.user_id);
+  const usersData = (data || []).map((user) => {
+    return new User(
+      user.user_id,
+      user.name,
+      user.description,
+      user.github_id,
+      user.qiita_id,
+      user.x_id,
+      user.user_skill.skills.name
+    );
   });
 
   return usersData;
