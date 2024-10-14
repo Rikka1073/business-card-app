@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import { getAllUsersData } from "../utils/supabaseFunction";
 import { User } from "../domain/User";
 
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Link, Text } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
+import { ExternalLinkIcon } from "@chakra-ui/icons";
 
 const Card = () => {
   const { id } = useParams();
@@ -32,7 +33,6 @@ const Card = () => {
 
   return (
     <div>
-      id:{id}
       <Box>
         {loading ? (
           <Box>
@@ -42,12 +42,30 @@ const Card = () => {
           userData.map((user, index) => {
             return (
               <div key={index}>
-                <Text>{user.name}</Text>
-                <Text>{user.description}</Text>
-                <Text>{user.github_id}</Text>
-                <Text>{user.qiita_id}</Text>
-                <Text>{user.x_id}</Text>
-                <Text>{user.skill}</Text>
+                <Text>名前:{user.name}</Text>
+                <Text>自己紹介:{user.description}</Text>
+                <Text>スキル:{user.skill}</Text>
+                <Text>
+                  Github:
+                  <Link href={`https://github.com/${user.github_id}`} isExternal>
+                    {user.github_id}
+                    <ExternalLinkIcon mx="2px" />
+                  </Link>
+                </Text>
+                <Text>
+                  Quiita:
+                  <Link href={`https://qiita.com/${user.qiita_id}`} isExternal>
+                    {user.qiita_id}
+                    <ExternalLinkIcon mx="2px" />
+                  </Link>
+                </Text>
+                <Text>
+                  X:
+                  <Link href={`https://x.com/${user.x_id}`} isExternal>
+                    {user.x_id}
+                    <ExternalLinkIcon mx="2px" />
+                  </Link>
+                </Text>
               </div>
             );
           })
