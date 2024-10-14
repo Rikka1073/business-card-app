@@ -17,14 +17,15 @@ export const getAllUsersData = async () => {
   }
 
   const usersData = (data || []).map((user) => {
+    const skill = user.user_skill.skills.name;
     return new User(
-      user.user_id,
       user.name,
       user.description,
       user.github_id,
       user.qiita_id,
       user.x_id,
-      user.user_skill.skills.name
+      user.user_id,
+      skill
     );
   });
 

@@ -6,6 +6,6 @@ export class User {
     public qiita_id: string,
     public x_id: string,
     public user_id: string,
-    public skills: string
+    public skill: string
   ) {}
 }

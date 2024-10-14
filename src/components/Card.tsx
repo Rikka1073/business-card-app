@@ -13,15 +13,22 @@ const Card = () => {
   useEffect(() => {
     const getUserData = async () => {
       const userDatas = await getAllUsersData();
+      console.log(userDatas);
       if (Array.isArray(userDatas)) {
-        setuserData(userDatas);
-        setLoading(false);
+        const matchUserData = userDatas.find((number) => number.user_id === id);
+        if (matchUserData) {
+          console.log("データが表示されるます");
+          setuserData(userDatas);
+          setLoading(false);
+        } else {
+          setLoading(true);
+        }
       } else {
         console.log("Error");
       }
     };
     getUserData();
-  }, []);
+  }, [id]);
 
   return (
     <div>
@@ -40,7 +47,7 @@ const Card = () => {
                 <Text>{user.github_id}</Text>
                 <Text>{user.qiita_id}</Text>
                 <Text>{user.x_id}</Text>
-                <Text>{user.skills}</Text>
+                <Text>{user.skill}</Text>
               </div>
             );
           })
