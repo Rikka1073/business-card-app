@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getAllUsersData } from "../utils/supabaseFunction";
 import { User } from "../domain/User";
 
-import { Box, Center, ChakraProvider, Link, Text } from "@chakra-ui/react";
+import { Box, Link, Text } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 
@@ -43,7 +43,7 @@ const Card = () => {
             return (
               <Box key={index}>
                 <Text>名前:{user.name}</Text>
-                <Text>自己紹介:{user.description}</Text>
+                <Box>自己紹介:{user.description}</Box>
                 <Text>スキル:{user.skill}</Text>
                 <Text>
                   Github:
