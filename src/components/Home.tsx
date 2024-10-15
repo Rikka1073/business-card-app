@@ -5,9 +5,7 @@ const Home = () => {
     <>
       <Box>
         Home
-        <ChakraProvider>
-          <Button colorScheme="blue">Button</Button>
-        </ChakraProvider>
+        <Button colorScheme="blue">Button</Button>
       </Box>
     </>
   );

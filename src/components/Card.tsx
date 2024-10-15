@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getAllUsersData } from "../utils/supabaseFunction";
 import { User } from "../domain/User";
 
-import { Box, Link, Text } from "@chakra-ui/react";
+import { Box, Center, ChakraProvider, Link, Text } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 
@@ -32,8 +32,8 @@ const Card = () => {
   }, [id]);
 
   return (
-    <div>
-      <Box>
+    <Box bg="red.300" h="100vh" display="flex" alignItems="center" justifyContent="center">
+      <Box boxShadow="xs" p="6" rounded="md" bg="white" w="80%">
         {loading ? (
           <Box>
             <Text>Loading...</Text>
@@ -41,7 +41,7 @@ const Card = () => {
         ) : (
           userData.map((user, index) => {
             return (
-              <div key={index}>
+              <Box key={index}>
                 <Text>名前:{user.name}</Text>
                 <Text>自己紹介:{user.description}</Text>
                 <Text>スキル:{user.skill}</Text>
@@ -66,12 +66,12 @@ const Card = () => {
                     <ExternalLinkIcon mx="2px" />
                   </Link>
                 </Text>
-              </div>
+              </Box>
             );
           })
         )}
       </Box>
-    </div>
+    </Box>
   );
 };
 
