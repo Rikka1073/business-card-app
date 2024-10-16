@@ -39,10 +39,9 @@ const Register = () => {
           </Text>
           <Input placeholder="Qiita Id" mb="5" />
           <Text pl="2" mb="1">
-            {" "}
-            "Twitter Id
+            X Id
           </Text>
-          <Input placeholder="Twitter Id" />
+          <Input placeholder="X Id" />
           <Button colorScheme="teal" mt="5" w="full">
             登録
           </Button>
