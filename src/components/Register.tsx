@@ -1,8 +1,10 @@
 import { Box, Button, Center, FormControl, Input, Select, Text } from "@chakra-ui/react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { User } from "../domain/User";
 
 const Register = () => {
+  const [userData, setUserData] = useState<User[]>([]);
   const [id, setId] = useState("");
   const [name, setName] = useState("");
   const [introduce, setIntroduce] = useState("");
@@ -20,6 +22,25 @@ const Register = () => {
 
   const onclickEntry = () => {
     console.log("登録ボタンが押されました");
+    const newUserData: User = {
+      name: name,
+      description: introduce,
+      github_id: githubId,
+      qiita_id: qiitaId,
+      x_id: xId,
+      user_id: id,
+      skill: skill,
+    };
+    const newUserDatas = [...userData, newUserData];
+    setUserData(newUserDatas);
+    console.log(newUserDatas);
+    setId("");
+    setName("");
+    setIntroduce("");
+    setSkill("");
+    setGithubId("");
+    setQiitaId("");
+    setXId("");
   };
 
   const onchangeId = (e: React.ChangeEvent<HTMLInputElement>) => {
