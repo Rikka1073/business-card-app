@@ -33,15 +33,15 @@ const Register = () => {
   };
 
   return (
-    <Box position="relative" overflow-y="auto">
+    <Box position="relative" overflow-y="scroll">
       <Center>
         <Box bg="red.400" p="4" w="300px">
           <Center>
-            <Text fontSize="lg" fontWeight="bold">
+            <Text fontSize="lg" fontWeight="bold" mb="5">
               名刺新規登録
             </Text>
           </Center>
-          <FormControl onSubmit={handleSubmit(onsubmit)}>
+          <FormControl onSubmit={handleSubmit(onsubmit)} h="500px" overflow="scroll">
             <Box mb="5">
               <Text pl="2" mb="1">
                 ID
@@ -82,7 +82,10 @@ const Register = () => {
               <Text pl="2" mb="1">
                 好きな技術
               </Text>
-              <Select placeholder="Select option" {...register("skill", { required: true })}>
+              <Select
+                placeholder="Select option"
+                {...register("skill", { required: "Skill is required" })}
+              >
                 <option value="option1">React</option>
                 <option value="option2">Typescript</option>
                 <option value="option3">Github</option>
