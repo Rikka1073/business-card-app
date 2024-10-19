@@ -32,6 +32,31 @@ const Register = () => {
     setName(e.target.value);
   };
 
+  const onchangeIntroduce = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.value);
+    setIntroduce(e.target.value);
+  };
+
+  const onchangeSkill = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    console.log(e.target.value);
+    setSkill(e.target.value);
+  };
+
+  const onchangeGithubId = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.value);
+    setGithubId(e.target.value);
+  };
+
+  const onchangeQiitaId = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.value);
+    setQiitaId(e.target.value);
+  };
+
+  const onchangeXId = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.value);
+    setXId(e.target.value);
+  };
+
   return (
     <Box position="relative" overflow-y="scroll">
       <Center>
@@ -71,10 +96,11 @@ const Register = () => {
                 自己紹介
               </Text>
               <Input
-                {...register("introduce", { required: true })}
+                {...register("introduce", { required: true, onChange: onchangeIntroduce })}
                 placeholder="自己紹介"
                 h="150px"
                 mb="2"
+                value={introduce}
               />
               {errors.introduce && <Text color="red.500">自己紹介は必須です</Text>}
             </Box>
@@ -84,7 +110,11 @@ const Register = () => {
               </Text>
               <Select
                 placeholder="Select option"
-                {...register("skill", { required: "Skill is required" })}
+                {...register("skill", {
+                  required: "Skill is required",
+                  onChange: onchangeSkill,
+                })}
+                value={skill}
               >
                 <option value="option1">React</option>
                 <option value="option2">Typescript</option>
@@ -96,19 +126,19 @@ const Register = () => {
               <Text pl="2" mb="1">
                 Github Id
               </Text>
-              <Input placeholder="Github Id" mb="2" />
+              <Input onChange={onchangeGithubId} placeholder="Github Id" value={githubId} mb="2" />
             </Box>
             <Box mb="5">
               <Text pl="2" mb="1">
                 Qiita Id
               </Text>
-              <Input placeholder="Qiita Id" mb="5" />
+              <Input onChange={onchangeQiitaId} placeholder="Qiita Id" value={qiitaId} mb="5" />
             </Box>
             <Box mb="5">
               <Text pl="2" mb="1">
                 X Id
               </Text>
-              <Input placeholder="X Id" />
+              <Input onChange={onchangeXId} placeholder="X Id" value={xId} />
             </Box>
             <Button colorScheme="teal" mt="5" w="full" onClick={onclickEntry}>
               登録
