@@ -2,10 +2,11 @@ import { Box, Button, Center, FormControl, Input, Select, Text } from "@chakra-u
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { User } from "../domain/User";
+import { createSkill, createUser, createUserSkill } from "../utils/supabaseFunction";
 
 const Register = () => {
   const [userData, setUserData] = useState<User[]>([]);
-  const [id, setId] = useState("");
+  const [userId, setUserId] = useState("");
   const [name, setName] = useState("");
   const [introduce, setIntroduce] = useState("");
   const [skill, setSkill] = useState("");
@@ -28,13 +29,16 @@ const Register = () => {
       github_id: githubId,
       qiita_id: qiitaId,
       x_id: xId,
-      user_id: id,
+      user_id: userId,
       skill: skill,
     };
     const newUserDatas = [...userData, newUserData];
     setUserData(newUserDatas);
+    createUser(userId, name, introduce, githubId, qiitaId, xId);
+    createUserSkill(userId, skill);
+    createSkill(skill);
     console.log(newUserDatas);
-    setId("");
+    setUserId("");
     setName("");
     setIntroduce("");
     setSkill("");
@@ -45,7 +49,7 @@ const Register = () => {
 
   const onchangeId = (e: React.ChangeEvent<HTMLInputElement>) => {
     console.log(e.target.value);
-    setId(e.target.value);
+    setUserId(e.target.value);
   };
 
   const onchangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -96,7 +100,7 @@ const Register = () => {
                 {...register("id", { required: true, onChange: onchangeId })}
                 placeholder="ID"
                 mb="2"
-                value={id}
+                value={userId}
               />
               {errors.id && <Text color="red.500">IDは必須です</Text>}
             </Box>
@@ -137,9 +141,9 @@ const Register = () => {
                 })}
                 value={skill}
               >
-                <option value="option1">React</option>
-                <option value="option2">Typescript</option>
-                <option value="option3">Github</option>
+                <option value="React">React</option>
+                <option value="Typescript">Typescript</option>
+                <option value="Github">Github</option>
               </Select>
               {errors.skill && <Text color="red.500">スキルは必須です</Text>}
             </Box>
