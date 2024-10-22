@@ -1,4 +1,3 @@
-import { s } from "framer-motion/client";
 import { User } from "../domain/User";
 import { supabase } from "./supabase";
 
@@ -18,7 +17,8 @@ export const getAllUsersData = async () => {
   }
 
   const usersData = (data || []).map((user) => {
-    const skill = user.user_skill.skills.name;
+    const skill = user.user_skil?.skills?.name || "no skill";
+    console.log("skill", skill);
     return new User(
       user.name,
       user.description,

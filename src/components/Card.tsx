@@ -24,9 +24,10 @@ const Card = () => {
       console.log(userDatas);
       if (Array.isArray(userDatas)) {
         const matchUserData = userDatas.find((number) => number.user_id === id);
+        console.log(matchUserData);
         if (matchUserData) {
           console.log("データが表示されるます");
-          setuserData(userDatas);
+          setuserData([matchUserData]);
           setLoading(false);
         } else {
           setLoading(true);
@@ -40,6 +41,7 @@ const Card = () => {
 
   return (
     <Box bg="red.300" h="100vh" display="flex" alignItems="center" justifyContent="center">
+      {id}
       <Box boxShadow="xs" p="6" rounded="md" bg="white" w="80%">
         {loading ? (
           <Box>
@@ -49,6 +51,7 @@ const Card = () => {
           userData.map((user, index) => {
             return (
               <Box key={index}>
+                <Text>ID:{user.user_id}</Text>
                 <Text>名前:{user.name}</Text>
                 <Box>
                   自己紹介:

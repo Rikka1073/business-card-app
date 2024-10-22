@@ -3,6 +3,8 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { User } from "../domain/User";
 import { createSkill, createUser, createUserSkill } from "../utils/supabaseFunction";
+import { useNavigate } from "react-router-dom";
+import { use } from "framer-motion/client";
 
 const Register = () => {
   const [userData, setUserData] = useState<User[]>([]);
@@ -13,6 +15,7 @@ const Register = () => {
   const [githubId, setGithubId] = useState("");
   const [qiitaId, setQiitaId] = useState("");
   const [xId, setXId] = useState("");
+  const navigate = useNavigate();
 
   const {
     register,
@@ -45,6 +48,7 @@ const Register = () => {
     setGithubId("");
     setQiitaId("");
     setXId("");
+    navigate("/");
   };
 
   const onchangeId = (e: React.ChangeEvent<HTMLInputElement>) => {
