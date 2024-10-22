@@ -9,7 +9,7 @@ const Home = () => {
         </Text>
         <FormLabel>ID</FormLabel>
         <Input mb="5" placeholder="ID"></Input>
-        <Button colorScheme="blue">Button</Button>
+        <Button colorScheme="blue">名刺を探す</Button>
       </Box>
     </>
   );
