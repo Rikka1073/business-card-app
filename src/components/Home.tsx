@@ -1,4 +1,5 @@
 import { Box, Button, FormLabel, Input, Text } from "@chakra-ui/react";
+import { FaSearch } from "react-icons/fa";
 
 const Home = () => {
   return (
@@ -9,7 +10,10 @@ const Home = () => {
         </Text>
         <FormLabel>ID</FormLabel>
         <Input mb="5" placeholder="ID"></Input>
-        <Button colorScheme="blue">名刺を探す</Button>
+        <Button colorScheme="blue" gap="2">
+          名刺を探す
+          <FaSearch />
+        </Button>
       </Box>
     </>
   );
