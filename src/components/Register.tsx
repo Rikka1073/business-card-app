@@ -4,7 +4,6 @@ import { useForm } from "react-hook-form";
 import { User } from "../domain/User";
 import { createSkill, createUser, createUserSkill } from "../utils/supabaseFunction";
 import { useNavigate } from "react-router-dom";
-import { use } from "framer-motion/client";
 
 const Register = () => {
   const [userData, setUserData] = useState<User[]>([]);
