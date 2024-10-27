@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getAllUsersData } from "../utils/supabaseFunction";
 import { User } from "../domain/User";
 
-import { Box, Link, Text } from "@chakra-ui/react";
+import { Box, Button, Link, Text } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import DOMPurify from "dompurify";
@@ -79,6 +79,9 @@ const Card = () => {
                     <ExternalLinkIcon mx="2px" />
                   </Link>
                 </Text>
+                <Link href={`/`} isExternal>
+                  <Button>戻る</Button>
+                </Link>
               </Box>
             );
           })
