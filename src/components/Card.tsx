@@ -6,7 +6,7 @@ import { Box, Button, Link, Text } from "@chakra-ui/react";
 import { FaGithub } from "react-icons/fa";
 import { SiQiita } from "react-icons/si";
 import { FaXTwitter } from "react-icons/fa6";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import * as DOMPurify from "isomorphic-dompurify";
 
 import parse from "html-react-parser";
@@ -15,10 +15,15 @@ const Card = () => {
   const { id } = useParams();
   const [userData, setuserData] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   const ParserSanitized = ({ html }: { html: string }) => {
     const sanitizedHtml = DOMPurify.sanitize(html);
     return parse(sanitizedHtml);
+  };
+
+  const onclickBackButton = () => {
+    navigate("/");
   };
 
   useEffect(() => {
@@ -82,9 +87,9 @@ const Card = () => {
                     </Link>
                   </Text>
                 </Box>
-                <Link data-testid="backButton" href={`/`} isExternal>
-                  <Button w="full">戻る</Button>
-                </Link>
+                <Button onClick={onclickBackButton} data-testid="backButton" w="full">
+                  戻る
+                </Button>
               </Box>
             );
           })
