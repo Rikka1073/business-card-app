@@ -66,23 +66,23 @@ const Card = () => {
                   スキル:{user.skill}
                 </Text>
                 <Box display="flex" justifyContent="space-between" mb={5}>
-                  <Text>
+                  <Text data-testid="userGithub">
                     <Link href={`https://github.com/${user.github_id}`} isExternal>
                       <FaGithub size={40} />
                     </Link>
                   </Text>
-                  <Text>
+                  <Text data-testid="userQiita">
                     <Link href={`https://qiita.com/${user.qiita_id}`} isExternal>
                       <SiQiita size={40} />
                     </Link>
                   </Text>
-                  <Text>
+                  <Text data-testid="userX">
                     <Link href={`https://x.com/${user.x_id}`} isExternal>
                       <FaXTwitter size={40} />
                     </Link>
                   </Text>
                 </Box>
-                <Link href={`/`} isExternal>
+                <Link data-testid="backButton" href={`/`} isExternal>
                   <Button w="full">戻る</Button>
                 </Link>
               </Box>
