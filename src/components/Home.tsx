@@ -17,13 +17,13 @@ const Home = () => {
     console.log(e.target.value);
   };
 
-  const onsubmit = (data) => console.log(data);
+  const onsubmit = (data: any) => console.log(data);
 
   return (
     <>
       <FormControl onSubmit={handleSubmit(onsubmit)}>
         <Box w="full" bg="red.400" textAlign="center" px="10">
-          <Text as="h2" fontSize="2xl" fontWeight="bold" mb="5">
+          <Text data-testid="titleId" as="h2" fontSize="2xl" fontWeight="bold" mb="5">
             デジタル名刺アプリ
           </Text>
           <FormLabel>ID</FormLabel>

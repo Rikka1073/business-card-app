@@ -5,7 +5,8 @@ import { User } from "../domain/User";
 import { Box, Button, Link, Text } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
-import DOMPurify from "dompurify";
+import * as DOMPurify from "isomorphic-dompurify";
+
 import parse from "html-react-parser";
 
 const Card = () => {
@@ -51,7 +52,7 @@ const Card = () => {
           userData.map((user, index) => {
             return (
               <Box key={index}>
-                <Text>ID:{user.user_id}</Text>
+                <Text data-testid="userName">ID:{user.user_id}</Text>
                 <Text>名前:{user.name}</Text>
                 <Box>
                   自己紹介:
