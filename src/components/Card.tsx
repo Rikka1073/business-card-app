@@ -13,7 +13,7 @@ const Card = () => {
   const [userData, setuserData] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const ParserSanitized = ({ html }) => {
+  const ParserSanitized = ({ html }: { html: string }) => {
     const sanitizedHtml = DOMPurify.sanitize(html);
     return parse(sanitizedHtml);
   };
