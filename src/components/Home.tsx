@@ -23,7 +23,7 @@ const Home = () => {
     <>
       <FormControl onSubmit={handleSubmit(onsubmit)}>
         <Box w="full" bg="red.400" textAlign="center" px="10">
-          <Text data-testid="titleId" as="h2" fontSize="2xl" fontWeight="bold" mb="5">
+          <Text data-testid="homeTitleId" as="h2" fontSize="2xl" fontWeight="bold" mb="5">
             デジタル名刺アプリ
           </Text>
           <FormLabel>ID</FormLabel>
