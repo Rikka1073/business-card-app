@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { User } from "../domain/User";
 import Home from "../components/Home";
 import Card from "../components/Card";
@@ -145,9 +145,30 @@ describe("Card", () => {
 });
 
 describe("Register", () => {
-  it("タイトルがあること", async () => {
+  beforeEach(() => {
     render(<Register />);
+  });
+
+  it("タイトルがあること", async () => {
     const title = screen.getByTestId("registerTitleId");
     expect(title).toBeInTheDocument();
+  });
+
+  it("IDがないときにエラーメッセージがでる", async () => {
+    mockData.mockResolvedValue([new User("", "", "", "", "", "", "")]);
+
+    await waitFor(() => expect(screen.getByTestId("inputId")).toBeInTheDocument());
+
+    const inputId = screen.getByTestId("inputId");
+
+    fireEvent.change(inputId, { target: { value: "" } });
+    fireEvent.blur(inputId);
+
+    await waitFor(() => {
+      const errorMessage = screen.getByTestId("errorMessageId");
+      expect(errorMessage).toBeInTheDocument();
+    });
+
+    screen.debug();
   });
 });

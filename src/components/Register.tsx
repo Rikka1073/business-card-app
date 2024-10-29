@@ -19,7 +19,7 @@ const Register = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm({ mode: "onBlur" });
   const onsubmit = (data: any) => console.log(data);
 
@@ -104,8 +104,13 @@ const Register = () => {
                 placeholder="ID"
                 mb="2"
                 value={userId}
+                data-testid="inputId"
               />
-              {errors.id && <Text color="red.500">IDは必須です</Text>}
+              {errors.id && (
+                <Text data-testid="errorMessageId" color="red.500">
+                  IDは必須です
+                </Text>
+              )}
             </Box>
             <Box mb="5">
               <Text pl="2" mb="1">
@@ -168,7 +173,14 @@ const Register = () => {
               </Text>
               <Input onChange={onchangeXId} placeholder="X Id" value={xId} />
             </Box>
-            <Button colorScheme="teal" mt="5" w="full" onClick={onclickEntry}>
+            <Button
+              type="submit"
+              disabled={!isValid}
+              colorScheme="teal"
+              mt="5"
+              w="full"
+              onClick={onclickEntry}
+            >
               登録
             </Button>
           </FormControl>
