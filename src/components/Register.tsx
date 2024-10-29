@@ -121,8 +121,13 @@ const Register = () => {
                 placeholder="名前"
                 value={name}
                 mb="2"
+                data-testid="inputName"
               />
-              {errors.name && <Text color="red.500">名前は必須です</Text>}
+              {errors.name && (
+                <Text data-testid="errorMessageName" color="red.500">
+                  名前は必須です
+                </Text>
+              )}
             </Box>
             <Box mb="5">
               <Text pl="2" mb="1">
@@ -134,8 +139,13 @@ const Register = () => {
                 h="150px"
                 mb="2"
                 value={introduce}
+                data-testid="inputIntroduce"
               />
-              {errors.introduce && <Text color="red.500">自己紹介は必須です</Text>}
+              {errors.introduce && (
+                <Text data-testid="errorMessageIntroduce" color="red.500">
+                  自己紹介は必須です
+                </Text>
+              )}
             </Box>
             <Box mb="5">
               <Text pl="2" mb="1">

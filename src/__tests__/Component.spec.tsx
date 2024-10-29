@@ -171,4 +171,22 @@ describe("Register", () => {
 
     screen.debug();
   });
+
+  it("名前がないときにエラーメッセージがでる", async () => {
+    mockData.mockResolvedValue([new User("", "", "", "", "", "", "")]);
+
+    await waitFor(() => expect(screen.getByTestId("inputName")).toBeInTheDocument());
+
+    const inputName = screen.getByTestId("inputName");
+
+    fireEvent.change(inputName, { target: { value: "" } });
+    fireEvent.blur(inputName);
+
+    await waitFor(() => {
+      const errorMessage = screen.getByTestId("errorMessageName");
+      expect(errorMessage).toBeInTheDocument();
+    });
+
+    screen.debug();
+  });
 });
