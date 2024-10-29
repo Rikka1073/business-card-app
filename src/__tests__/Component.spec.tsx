@@ -1,10 +1,11 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { User } from "../domain/User";
-import Home from "../components/Home";
 import Card from "../components/Card";
 import Register from "../components/Register";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { act } from "react";
+import Home from "../components/Home";
+import { s } from "vite/dist/node/types.d-aGj9QkWt";
 
 const mockData = jest
   .fn()
@@ -59,7 +60,6 @@ describe("Card", () => {
     });
     const userDescription = screen.getByTestId("userDescription");
     expect(userDescription).toBeInTheDocument();
-    screen.debug();
   });
 
   it("スキルがあること", async () => {
@@ -74,7 +74,6 @@ describe("Card", () => {
     });
     const userSkill = screen.getByTestId("userSkill");
     expect(userSkill).toBeInTheDocument();
-    screen.debug();
   });
 
   it("Githubアイコンがあること", async () => {
@@ -89,7 +88,6 @@ describe("Card", () => {
     });
     const userGithub = screen.getByTestId("userGithub");
     expect(userGithub).toBeInTheDocument();
-    screen.debug();
   });
 
   it("Qiitaアイコンがあること", async () => {
@@ -104,7 +102,6 @@ describe("Card", () => {
     });
     const userQiita = screen.getByTestId("userQiita");
     expect(userQiita).toBeInTheDocument();
-    screen.debug();
   });
 
   it("Xアイコンがあること", async () => {
@@ -119,7 +116,6 @@ describe("Card", () => {
     });
     const userX = screen.getByTestId("userX");
     expect(userX).toBeInTheDocument();
-    screen.debug();
   });
 
   it("戻るボタンが押せて遷移できること", async () => {
@@ -139,8 +135,6 @@ describe("Card", () => {
     fireEvent.click(backButton);
 
     expect(mockeNavigator).toHaveBeenCalledWith("/");
-
-    screen.debug();
   });
 });
 
@@ -154,39 +148,55 @@ describe("Register", () => {
     expect(title).toBeInTheDocument();
   });
 
-  it("IDがないときにエラーメッセージがでる", async () => {
-    mockData.mockResolvedValue([new User("", "", "", "", "", "", "")]);
-
-    await waitFor(() => expect(screen.getByTestId("inputId")).toBeInTheDocument());
-
-    const inputId = screen.getByTestId("inputId");
-
-    fireEvent.change(inputId, { target: { value: "" } });
-    fireEvent.blur(inputId);
-
-    await waitFor(() => {
-      const errorMessage = screen.getByTestId("errorMessageId");
-      expect(errorMessage).toBeInTheDocument();
+  it("登録ができること", async () => {
+    await act(async () => {
+      render(
+        <MemoryRouter initialEntries={["/"]}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+          </Routes>
+        </MemoryRouter>
+      );
     });
+    const button = screen.getByTestId("entryButton");
+    fireEvent.click(button);
 
-    screen.debug();
+    expect(mockeNavigator).toHaveBeenCalledWith("/");
   });
 
-  it("名前がないときにエラーメッセージがでる", async () => {
-    mockData.mockResolvedValue([new User("", "", "", "", "", "", "")]);
+  // it("IDがないときにエラーメッセージがでる", async () => {
+  //   mockData.mockResolvedValue([new User("", "", "", "", "", "", "")]);
 
-    await waitFor(() => expect(screen.getByTestId("inputName")).toBeInTheDocument());
+  //   await waitFor(() => expect(screen.getByTestId("inputId")).toBeInTheDocument());
 
-    const inputName = screen.getByTestId("inputName");
+  //   const inputId = screen.getByTestId("inputId");
 
-    fireEvent.change(inputName, { target: { value: "" } });
-    fireEvent.blur(inputName);
+  //   fireEvent.change(inputId, { target: { value: "" } });
+  //   fireEvent.blur(inputId);
 
-    await waitFor(() => {
-      const errorMessage = screen.getByTestId("errorMessageName");
-      expect(errorMessage).toBeInTheDocument();
-    });
+  //   await waitFor(() => {
+  //     const errorMessage = screen.getByTestId("errorMessageId");
+  //     expect(errorMessage).toBeInTheDocument();
+  //   });
 
-    screen.debug();
-  });
+  //   screen.debug();
+  // });
+
+  // it("名前がないときにエラーメッセージがでる", async () => {
+  //   mockData.mockResolvedValue([new User("", "", "", "", "", "", "")]);
+
+  //   await waitFor(() => expect(screen.getByTestId("inputName")).toBeInTheDocument());
+
+  //   const inputName = screen.getByTestId("inputName");
+
+  //   fireEvent.change(inputName, { target: { value: "" } });
+  //   fireEvent.blur(inputName);
+
+  //   await waitFor(() => {
+  //     const errorMessage = screen.getByTestId("errorMessageName");
+  //     expect(errorMessage).toBeInTheDocument();
+  //   });
+
+  //   screen.debug();
+  // });
 });

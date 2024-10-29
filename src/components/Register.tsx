@@ -190,6 +190,7 @@ const Register = () => {
               mt="5"
               w="full"
               onClick={onclickEntry}
+              data-testid="entryButton"
             >
               登録
             </Button>
