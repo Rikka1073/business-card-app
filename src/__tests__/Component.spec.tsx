@@ -2,6 +2,7 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import { User } from "../domain/User";
 import Home from "../components/Home";
 import Card from "../components/Card";
+import Register from "../components/Register";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { act } from "react";
 
@@ -25,13 +26,13 @@ jest.mock("../utils/supabaseFunction", () => {
   };
 });
 
-describe("Card", () => {
-  it("タイトルがあること", async () => {
-    render(<Home />);
-    const title = screen.getByTestId("titleId");
-    expect(title).toBeInTheDocument();
-  });
+const mockeNavigator = jest.fn();
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  useNavigate: () => mockeNavigator,
+}));
 
+describe("Card", () => {
   it("名前があること", async () => {
     await act(async () => {
       render(
@@ -137,14 +138,16 @@ describe("Card", () => {
 
     fireEvent.click(backButton);
 
+    expect(mockeNavigator).toHaveBeenCalledWith("/");
+
     screen.debug();
   });
 });
 
-describe("Card", () => {
+describe("Register", () => {
   it("タイトルがあること", async () => {
-    render(<Home />);
-    const title = screen.getByTestId("titleId");
+    render(<Register />);
+    const title = screen.getByTestId("registerTitleId");
     expect(title).toBeInTheDocument();
   });
 });

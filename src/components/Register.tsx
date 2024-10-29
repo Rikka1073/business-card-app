@@ -21,7 +21,7 @@ const Register = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({ mode: "onBlur" });
-  const onsubmit = (data) => console.log(data);
+  const onsubmit = (data: any) => console.log(data);
 
   const onclickEntry = () => {
     console.log("登録ボタンが押されました");
@@ -90,7 +90,7 @@ const Register = () => {
       <Center>
         <Box bg="red.400" p="4" w="300px">
           <Center>
-            <Text fontSize="lg" fontWeight="bold" mb="5">
+            <Text data-testid="registerTitleId" fontSize="lg" fontWeight="bold" mb="5">
               名刺新規登録
             </Text>
           </Center>
