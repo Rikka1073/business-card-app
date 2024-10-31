@@ -2,19 +2,29 @@ import { Box, Button, FormControl, FormLabel, Input, Link, Text } from "@chakra-
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaSearch } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const [id, setId] = useState("");
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm({ mode: "onBlur" });
 
   const onchangeButton = (e: React.ChangeEvent<HTMLInputElement>) => {
     setId(e.target.value);
     console.log("名刺を探すボタンが押されました");
     console.log(e.target.value);
+  };
+
+  const onclickSearch = () => {
+    navigate(`/cards/${id}`);
+  };
+
+  const onclickNewButton = () => {
+    navigate(`/cards/register`);
   };
 
   const onsubmit = (data: any) => console.log(data);
@@ -32,14 +42,30 @@ const Home = () => {
             mb="5"
             placeholder="ID"
             value={id}
+            data-testid="searchId"
           />
-          {errors.search && <Text color="red.500">IDは必須です</Text>}
-          <Link href={`/cards/${id}`} isExternal>
-            <Button colorScheme="blue" w="40" display="flex" gap="2" alignItems="center" m="auto">
-              名刺を探す
-              <FaSearch />
-            </Button>
-          </Link>
+          {errors.search && (
+            <Text data-testid="errorMessageId" color="red.500">
+              IDは必須です
+            </Text>
+          )}
+          <Button
+            data-testid="searchButton"
+            colorScheme="blue"
+            w="40"
+            display="flex"
+            gap="2"
+            alignItems="center"
+            m="auto"
+            onClick={onclickSearch}
+            disabled={!isValid}
+          >
+            名刺を探す
+            <FaSearch />
+          </Button>
+          <Button data-testid="newButton" onClick={onclickNewButton}>
+            新規登録はこちら
+          </Button>
         </Box>
       </FormControl>
     </>
