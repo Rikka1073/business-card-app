@@ -29,12 +29,9 @@ const Card = () => {
   useEffect(() => {
     const getUserData = async () => {
       const userDatas = await getAllUsersData();
-      console.log(userDatas);
       if (Array.isArray(userDatas)) {
         const matchUserData = userDatas.find((number) => number.user_id === id);
-        console.log(matchUserData);
         if (matchUserData) {
-          console.log("データが表示されるます");
           setuserData([matchUserData]);
           setLoading(false);
         } else {
