@@ -45,7 +45,7 @@ const Card = () => {
   }, [id]);
 
   return (
-    <Box bg="red.300" h="100vh" display="flex" alignItems="center" justifyContent="center">
+    <Box bg="blue.100" h="100vh" display="flex" alignItems="center" justifyContent="center">
       {/* {id} */}
       <Box boxShadow="xs" p="6" rounded="md" bg="white" w="80%">
         {loading ? (
