@@ -85,118 +85,130 @@ const Register = () => {
     setXId(e.target.value);
   };
 
+  const onclickBack = () => {
+    navigate("/");
+  };
+
   return (
-    <Box position="relative" overflow-y="scroll">
-      <Center>
-        <Box bg="red.400" p="4" w="300px">
-          <Center>
-            <Text data-testid="registerTitleId" fontSize="lg" fontWeight="bold" mb="5">
-              名刺新規登録
+    <Box overflow-y="scroll" h="100vh" display="flex" alignItems="center" justifyContent="center">
+      <Box bg="red.400" w="full" mx="5" borderRadius="xl" p="5">
+        <Center>
+          <Text data-testid="registerTitleId" fontSize="lg" fontWeight="bold" mb="5">
+            名刺新規登録
+          </Text>
+        </Center>
+        <FormControl onSubmit={handleSubmit(onsubmit)} h="500px" overflow="scroll">
+          <Box mb="5">
+            <Text pl="2" mb="1">
+              ID
             </Text>
-          </Center>
-          <FormControl onSubmit={handleSubmit(onsubmit)} h="500px" overflow="scroll">
-            <Box mb="5">
-              <Text pl="2" mb="1">
-                ID
+            <Input
+              {...register("id", { required: true, onChange: onchangeId })}
+              placeholder="ID"
+              mb="2"
+              value={userId}
+              data-testid="inputId"
+            />
+            {errors.id && (
+              <Text data-testid="errorMessageId" color="red.500">
+                IDは必須です
               </Text>
-              <Input
-                {...register("id", { required: true, onChange: onchangeId })}
-                placeholder="ID"
-                mb="2"
-                value={userId}
-                data-testid="inputId"
-              />
-              {errors.id && (
-                <Text data-testid="errorMessageId" color="red.500">
-                  IDは必須です
-                </Text>
-              )}
-            </Box>
-            <Box mb="5">
-              <Text pl="2" mb="1">
-                名前
+            )}
+          </Box>
+          <Box mb="5">
+            <Text pl="2" mb="1">
+              名前
+            </Text>
+            <Input
+              {...register("name", { required: true, onChange: onchangeName })}
+              placeholder="名前"
+              value={name}
+              mb="2"
+              data-testid="inputName"
+            />
+            {errors.name && (
+              <Text data-testid="errorMessageName" color="red.500">
+                名前は必須です
               </Text>
-              <Input
-                {...register("name", { required: true, onChange: onchangeName })}
-                placeholder="名前"
-                value={name}
-                mb="2"
-                data-testid="inputName"
-              />
-              {errors.name && (
-                <Text data-testid="errorMessageName" color="red.500">
-                  名前は必須です
-                </Text>
-              )}
-            </Box>
-            <Box mb="5">
-              <Text pl="2" mb="1">
-                自己紹介
+            )}
+          </Box>
+          <Box mb="5">
+            <Text pl="2" mb="1">
+              自己紹介
+            </Text>
+            <Input
+              {...register("introduce", { required: true, onChange: onchangeIntroduce })}
+              placeholder="自己紹介"
+              h="150px"
+              mb="2"
+              value={introduce}
+              data-testid="inputIntroduce"
+            />
+            {errors.introduce && (
+              <Text data-testid="errorMessageIntroduce" color="red.500">
+                自己紹介は必須です
               </Text>
-              <Input
-                {...register("introduce", { required: true, onChange: onchangeIntroduce })}
-                placeholder="自己紹介"
-                h="150px"
-                mb="2"
-                value={introduce}
-                data-testid="inputIntroduce"
-              />
-              {errors.introduce && (
-                <Text data-testid="errorMessageIntroduce" color="red.500">
-                  自己紹介は必須です
-                </Text>
-              )}
-            </Box>
-            <Box mb="5">
-              <Text pl="2" mb="1">
-                好きな技術
-              </Text>
-              <Select
-                placeholder="Select option"
-                {...register("skill", {
-                  required: "Skill is required",
-                  onChange: onchangeSkill,
-                })}
-                value={skill}
-              >
-                <option value="React">React</option>
-                <option value="Typescript">Typescript</option>
-                <option value="Github">Github</option>
-              </Select>
-              {errors.skill && <Text color="red.500">スキルは必須です</Text>}
-            </Box>
-            <Box mb="5">
-              <Text pl="2" mb="1">
-                Github Id
-              </Text>
-              <Input onChange={onchangeGithubId} placeholder="Github Id" value={githubId} mb="2" />
-            </Box>
-            <Box mb="5">
-              <Text pl="2" mb="1">
-                Qiita Id
-              </Text>
-              <Input onChange={onchangeQiitaId} placeholder="Qiita Id" value={qiitaId} mb="5" />
-            </Box>
-            <Box mb="5">
-              <Text pl="2" mb="1">
-                X Id
-              </Text>
-              <Input onChange={onchangeXId} placeholder="X Id" value={xId} />
-            </Box>
-            <Button
-              type="submit"
-              disabled={!isValid}
-              colorScheme="teal"
-              mt="5"
-              w="full"
-              onClick={onclickEntry}
-              data-testid="entryButton"
+            )}
+          </Box>
+          <Box mb="5">
+            <Text pl="2" mb="1">
+              好きな技術
+            </Text>
+            <Select
+              placeholder="Select option"
+              {...register("skill", {
+                required: "Skill is required",
+                onChange: onchangeSkill,
+              })}
+              value={skill}
             >
-              登録
-            </Button>
-          </FormControl>
-        </Box>
-      </Center>
+              <option value="React">React</option>
+              <option value="Typescript">Typescript</option>
+              <option value="Github">Github</option>
+            </Select>
+            {errors.skill && <Text color="red.500">スキルは必須です</Text>}
+          </Box>
+          <Box mb="5">
+            <Text pl="2" mb="1">
+              Github Id
+            </Text>
+            <Input onChange={onchangeGithubId} placeholder="Github Id" value={githubId} mb="2" />
+          </Box>
+          <Box mb="5">
+            <Text pl="2" mb="1">
+              Qiita Id
+            </Text>
+            <Input onChange={onchangeQiitaId} placeholder="Qiita Id" value={qiitaId} mb="5" />
+          </Box>
+          <Box mb="5">
+            <Text pl="2" mb="1">
+              X Id
+            </Text>
+            <Input onChange={onchangeXId} placeholder="X Id" value={xId} />
+          </Box>
+          <Button
+            type="submit"
+            disabled={!isValid}
+            colorScheme="teal"
+            mt="5"
+            w="full"
+            onClick={onclickEntry}
+            data-testid="entryButton"
+          >
+            登録
+          </Button>
+          <Button
+            type="submit"
+            colorScheme="teal"
+            mt="5"
+            w="full"
+            onClick={onclickBack}
+            data-testid="entryButton"
+          >
+            戻る
+          </Button>
+        </FormControl>
+      </Box>
     </Box>
   );
 };
