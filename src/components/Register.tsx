@@ -197,14 +197,7 @@ const Register = () => {
           >
             登録
           </Button>
-          <Button
-            type="submit"
-            colorScheme="teal"
-            mt="5"
-            w="full"
-            onClick={onclickBack}
-            data-testid="entryButton"
-          >
+          <Button type="submit" colorScheme="teal" mt="5" w="full" onClick={onclickBack}>
             戻る
           </Button>
         </FormControl>
