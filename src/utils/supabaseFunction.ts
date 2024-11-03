@@ -17,8 +17,10 @@ export const getAllUsersData = async () => {
   }
 
   const usersData = (data || []).map((user) => {
-    const skill = user.user_skil?.skills?.name || "no skill";
-    console.log("skill", skill);
+    // const skill = user.user_skill?.skills?.name || "no skill";
+    const skill = user.user_skill.map((skill: { skills: { name: string } }) => {
+      return skill.skills.name;
+    });
     return new User(
       user.name,
       user.description,
