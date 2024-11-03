@@ -4,6 +4,8 @@ on:
     branches:
       - main
   workflow_dispatch:
+  schedule:
+    - cron: "0 18 * * *"
 
 jobs:
   build:
@@ -74,3 +76,25 @@ jobs:
       - name: Remove Credentials File
         if: success() || failure()
         run: rm firebase-key.json
+
+  delete:
+    runs-on: ubuntu-latest
+    needs: deploy
+    env:
+      VITE_SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      VITE_SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: setup-node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run delete script
+        run: npx tsx ./batch/index.ts
