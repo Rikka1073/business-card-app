@@ -33,7 +33,7 @@ const Home = () => {
     <>
       <FormControl onSubmit={handleSubmit(onsubmit)}>
         <Box bg="blue.100" h="100vh" display="flex" alignItems="center" justifyContent="center">
-          <Box w="full" bg="gray.200" textAlign="center" p="10" mx="5" borderRadius="xl">
+          <Box w={{ lg: "400px" }} bg="gray.200" textAlign="center" p="10" mx="5" borderRadius="xl">
             <Text data-testid="homeTitleId" as="h2" fontSize="2xl" fontWeight="bold" mb="5">
               デジタル名刺アプリ
             </Text>

@@ -47,7 +47,7 @@ const Card = () => {
   return (
     <Box bg="blue.100" h="100vh" display="flex" alignItems="center" justifyContent="center">
       {/* {id} */}
-      <Box boxShadow="xs" p="6" rounded="md" bg="white" w="80%">
+      <Box boxShadow="xs" p="6" rounded="md" bg="white" w="80%" w={{ lg: "400px" }}>
         {loading ? (
           <Box>
             <Text>Loading...</Text>
@@ -84,7 +84,12 @@ const Card = () => {
                     </Link>
                   </Text>
                 </Box>
-                <Button onClick={onclickBackButton} data-testid="backButton" w="full">
+                <Button
+                  onClick={onclickBackButton}
+                  data-testid="backButton"
+                  w="full"
+                  colorScheme="teal"
+                >
                   戻る
                 </Button>
               </Box>

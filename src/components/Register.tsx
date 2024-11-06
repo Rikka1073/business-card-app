@@ -90,8 +90,15 @@ const Register = () => {
   };
 
   return (
-    <Box overflow-y="scroll" h="100vh" display="flex" alignItems="center" justifyContent="center">
-      <Box bg="red.400" w="full" mx="5" borderRadius="xl" p="5">
+    <Box
+      overflow-y="scroll"
+      bg="blue.100"
+      h="100vh"
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+    >
+      <Box bg="gray.200" w={{ lg: "400px" }} mx="5" borderRadius="xl" p="5">
         <Center>
           <Text data-testid="registerTitleId" fontSize="lg" fontWeight="bold" mb="5">
             名刺新規登録
@@ -108,6 +115,8 @@ const Register = () => {
               mb="2"
               value={userId}
               data-testid="inputId"
+              bg="red.100"
+              focusBorderColor="red.400"
             />
             {errors.id && (
               <Text data-testid="errorMessageId" color="red.500">
@@ -125,6 +134,8 @@ const Register = () => {
               value={name}
               mb="2"
               data-testid="inputName"
+              bg="red.100"
+              focusBorderColor="red.400"
             />
             {errors.name && (
               <Text data-testid="errorMessageName" color="red.500">
@@ -143,6 +154,8 @@ const Register = () => {
               mb="2"
               value={introduce}
               data-testid="inputIntroduce"
+              bg="red.100"
+              focusBorderColor="red.400"
             />
             {errors.introduce && (
               <Text data-testid="errorMessageIntroduce" color="red.500">
@@ -161,6 +174,8 @@ const Register = () => {
                 onChange: onchangeSkill,
               })}
               value={skill}
+              bg="red.100"
+              focusBorderColor="red.400"
             >
               <option value="React">React</option>
               <option value="Typescript">Typescript</option>
@@ -172,19 +187,39 @@ const Register = () => {
             <Text pl="2" mb="1">
               Github Id
             </Text>
-            <Input onChange={onchangeGithubId} placeholder="Github Id" value={githubId} mb="2" />
+            <Input
+              onChange={onchangeGithubId}
+              placeholder="Github Id"
+              value={githubId}
+              mb="2"
+              bg="red.100"
+              focusBorderColor="red.400"
+            />
           </Box>
           <Box mb="5">
             <Text pl="2" mb="1">
               Qiita Id
             </Text>
-            <Input onChange={onchangeQiitaId} placeholder="Qiita Id" value={qiitaId} mb="5" />
+            <Input
+              onChange={onchangeQiitaId}
+              placeholder="Qiita Id"
+              value={qiitaId}
+              mb="5"
+              bg="red.100"
+              focusBorderColor="red.400"
+            />
           </Box>
           <Box mb="5">
             <Text pl="2" mb="1">
               X Id
             </Text>
-            <Input onChange={onchangeXId} placeholder="X Id" value={xId} />
+            <Input
+              onChange={onchangeXId}
+              placeholder="X Id"
+              value={xId}
+              bg="red.100"
+              focusBorderColor="red.400"
+            />
           </Box>
           <Button
             type="submit"
