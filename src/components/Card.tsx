@@ -47,7 +47,7 @@ const Card = () => {
   return (
     <Box bg="blue.100" h="100vh" display="flex" alignItems="center" justifyContent="center">
       {/* {id} */}
-      <Box boxShadow="xs" p="6" rounded="md" bg="white" w="80%" w={{ lg: "400px" }}>
+      <Box boxShadow="xs" p="6" rounded="md" bg="white" w={{ lg: "400px" }}>
         {loading ? (
           <Box>
             <Text>Loading...</Text>
